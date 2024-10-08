@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { messages as mockedMessages } from "../mock/Data";
 
-export function useChat ({ chatId }){
+export function useMessages ({ chatId }){
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState(null);
 
@@ -10,6 +10,7 @@ export function useChat ({ chatId }){
       // Mocked data
       const actualMessages = mockedMessages.filter((message) => message.document === chatId)[0].messages;
 
+      // TODO: Add local storage
       // const actualMessages = JSON.parse(
       //   localStorage.getItem(chatId)
       // ).filter((message) => message.document === chatId)[0].messages;
