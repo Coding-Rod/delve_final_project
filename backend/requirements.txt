@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+motor
+bcrypt
+PyJWT
+pdf2image
+pytesseract
+python-multipart
+pydantic
+python-decouple==3.8
+fastapi-cli==0.0.5
