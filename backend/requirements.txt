@@ -7,5 +7,6 @@ pdf2image
 pytesseract
 python-multipart
 pydantic
+pydantic[email]
 python-decouple==3.8
 fastapi-cli==0.0.5
