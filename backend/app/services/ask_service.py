@@ -13,6 +13,7 @@ class AskService:
     async def ask_question(chat_id):
         chat = await db.chats.find_one({"id": chat_id})
         document = await db.documents.find_one({"id": chat["document_id"]})
+        filename = document["filename"]
         markdown_content = document["content"]
         
         # TODO: Pass the markdown to the llama model
