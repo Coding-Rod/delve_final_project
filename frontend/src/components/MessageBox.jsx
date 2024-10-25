@@ -3,33 +3,32 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Card } from '@material-tailwind/react';
 
-export function MessageBox() {
+export function MessageBox({ sendMessage }) {
   const [message, setMessage] = useState('')
 
   const handleSendMessage = () => {
     if (message.trim() !== '') {
-      console.log("Message: ", message)
-      // axios.post('/api/messages', { message })
-      //   .then(response => {
-      //     console.log('Message sent:', response.data);
-      //     setMessage('');
-      //   })
-      //   .catch(error => {
-      //     console.error('Error sending message:', error);
-      //   });
+      sendMessage(message)
+      setMessage('')
     }
   }
 
   return (
-    <div className="fixed bottom-0 w-full bg-white p-4 shadow-lg px-40 border">
-      <Card className='flex flex-row justify-between items-center border border-black rounded-full px-30'>
+    <div className=" bottom-0 w-full bg-white p-4 shadow-lg px-40 border">
+      <div className='flex flex-row justify-between items-center p-0'>
         <textarea
           name="message"
           id="message"
-          placeholder="Ask something about your document to [App name]"
+          placeholder="Ask something about your document"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="ml-10 my-6 w-8/12 h-16 border border-gray-300 p-5 min-h-10 rounded-full overflow-y-scroll y-grow no-scrollbar"
+          onKeyUp={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault()
+              handleSendMessage()
+            }
+          }}
+          className="w-8/12 h-16 border border-gray-300 p-5 min-h-10  overflow-y-scroll y-grow no-scrollbar"
         />
         <div
           className="w-2/12"
@@ -41,7 +40,7 @@ export function MessageBox() {
             <SendIcon />
           </button>
         </div>
-      </Card>
+      </div>
     </div>
   );
 }

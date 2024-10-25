@@ -1,8 +1,7 @@
 export const messages = [
   {
     "id": "chat-812js9182h",
-    "name": "Chat 1",
-    "document": "doc-1",
+    "pdf_id": "doc-1",
     "messages": [
       {
         "id": "msg-1",
@@ -38,8 +37,7 @@ export const messages = [
   },
   {
     "id": "chat-912js9182h",
-    "name": "Chat 2",
-    "document": "doc-2",
+    "pdf_id": "doc-2",
     "messages": [
       {
         "id": "msg-1",
@@ -76,7 +74,6 @@ export const messages = [
   {
     "id": "chat-012js9182h",
     "name": "Chat 3",
-    "document": "doc-3",
     "messages": [
       {
         "id": "msg-1",
@@ -109,23 +106,5 @@ export const messages = [
         "sender": "bot"
       }
     ]
-  }
-]
-
-export const chats = [
-  {
-    "id": "chat-812js9182h",
-    "name": "Chat 1",
-    "document": "doc-1"
-  },
-  {
-    "id": "chat-912js9182h",
-    "name": "Chat 2",
-    "document": "doc-2"
-  },
-  {
-    "id": "chat-012js9182h",
-    "name": "Chat 3",
-    "document": "doc-3"
   }
 ]
