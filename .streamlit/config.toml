@@ -2,7 +2,7 @@
 maxUploadSize = 2
 
 [theme]
-base="dark"
-primaryColor="#0284c7"
-backgroundColor="#111111"
-secondaryBackgroundColor="#1e1e1e"
+primaryColor="#0369a1"
+backgroundColor="#eee"
+secondaryColor="#000"
+secondaryBackgroundColor="#d1d5db"

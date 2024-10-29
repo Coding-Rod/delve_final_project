@@ -6,8 +6,8 @@ from langchain_core.language_models import BaseLanguageModel
 from langchain_core.vectorstores import VectorStore, VectorStoreRetriever
 from langchain_qdrant import Qdrant
 
-from modules.config import Config
-from modules.model import create_embeddings, create_reranker
+from modules.config.main import Config
+from modules.model.main import create_embeddings, create_reranker
 
 
 def create_retriever(

@@ -1,15 +1,14 @@
-import asyncio
-import random
-
 import streamlit as st
 
-from modules.config import Config
-from modules.ingestor import Ingestor
-from modules.model import create_llm
-from modules.retriever import create_retriever
-from modules.uploader import upload_files
+from modules.config.main import Config
+from modules.model.main import create_llm
 
-class GUI:
+from ..utils.uploader import upload_files
+from ..logic.ingestor import Ingestor
+from ..logic.retriever import create_retriever
+
+class Controller:
+    chain = None
     def __init__(self, ask_question, create_chain):
         self.ask_question = ask_question
         self.create_chain = create_chain
@@ -43,7 +42,7 @@ class GUI:
     async def ask_chain(self, question: str, chain):
         full_response = ""
         assistant = st.chat_message(
-            "assistant", avatar=str(Config.Path.IMAGES_DIR / "assistant-avatar.png")
+            "assistant", avatar=str(Config.Path.IMAGES_DIR / "assistant-avatar.jpg")
         )
         with assistant:
             message_placeholder = st.empty()
@@ -57,43 +56,3 @@ class GUI:
                     documents.extend(event)
 
         st.session_state.messages.append({"role": "assistant", "content": full_response})
-
-
-    def show_upload_documents(self):
-        holder = st.empty()
-        with holder.container():
-            st.header("RagBase")
-            st.subheader("Get answers from your documents")
-            uploaded_files = st.file_uploader(
-                label="Upload PDF files", type=["pdf"], accept_multiple_files=True
-            )
-        if not uploaded_files:
-            st.warning("Please upload PDF documents to continue!")
-            st.stop()
-
-        with st.spinner("Analyzing your document(s)..."):
-            holder.empty()
-            return self.build_qa_chain(uploaded_files)
-
-    @staticmethod
-    def show_message_history():
-        for message in st.session_state.messages:
-            role = message["role"]
-            avatar_path = (
-                Config.Path.IMAGES_DIR / "assistant-avatar.png"
-                if role == "assistant"
-                else Config.Path.IMAGES_DIR / "user-avatar.png"
-            )
-            with st.chat_message(role, avatar=str(avatar_path)):
-                st.markdown(message["content"])
-
-
-    def show_chat_input(self, chain):
-        if prompt := st.chat_input("Ask your question here"):
-            st.session_state.messages.append({"role": "user", "content": prompt})
-            with st.chat_message(
-                "user",
-                avatar=str(Config.Path.IMAGES_DIR / "user-avatar.png"),
-            ):
-                st.markdown(prompt)
-            asyncio.run(self.ask_chain(prompt, chain))

@@ -27,7 +27,7 @@ GROQ_API_KEY="YOUR API KEY"
 Start project:
 
 ```sh
-streamlit run app.py
+streamlit run src/app.py
 ```
 
 ## Architecture

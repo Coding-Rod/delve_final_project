@@ -8,7 +8,7 @@ from langchain_experimental.text_splitter import SemanticChunker
 from langchain_qdrant import Qdrant
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from modules.config import Config
+from modules.config.main import Config
 
 
 class Ingestor:

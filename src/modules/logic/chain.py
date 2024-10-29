@@ -1,9 +1,6 @@
-import re
 from operator import itemgetter
-from typing import List
 
 from langchain.schema.runnable import RunnablePassthrough
-from langchain_core.documents import Document
 from langchain_core.language_models import BaseLanguageModel
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import Runnable
@@ -11,8 +8,9 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.tracers.stdout import ConsoleCallbackHandler
 from langchain_core.vectorstores import VectorStoreRetriever
 
-from modules.config import Config
-from modules.session_history import get_session_history
+from modules.config.main import Config
+from ..utils.session_history import get_session_history
+from ..utils.formatters import format_documents, remove_links
 
 PROMPT = """
 Utilize the provided contextual information to respond to the user question.
@@ -26,21 +24,6 @@ Context:
 
 Use markdown formatting where appropriate.
 """
-
-
-def remove_links(text: str) -> str:
-    url_pattern = r"https?://\S+|www\.\S+"
-    return re.sub(url_pattern, "", text)
-
-
-def format_documents(documents: List[Document]) -> str:
-    texts = []
-    for doc in documents:
-        texts.append(doc.page_content)
-        texts.append("---")
-
-    return remove_links("\n".join(texts))
-
 
 def create_chain(llm: BaseLanguageModel, retriever: VectorStoreRetriever) -> Runnable:
     prompt = ChatPromptTemplate.from_messages(

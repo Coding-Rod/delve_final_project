@@ -4,8 +4,7 @@ from typing import List
 
 from streamlit.runtime.uploaded_file_manager import UploadedFile
 
-from modules.config import Config
-
+from modules.config.main import Config
 
 def upload_files(
     files: List[UploadedFile], remove_old_files: bool = True
