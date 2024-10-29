@@ -162,5 +162,10 @@ cython_debug/
 #.idea/
 
 .DS_Store
-docs-db
-tmp
+
+# Generated folders
+src/db
+src/uploads
+
+# VS Code
+.vscode
