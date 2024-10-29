@@ -1,7 +1,6 @@
 import os
 from pathlib import Path
 
-
 class Config:
     class Path:
         APP_HOME = Path(os.getenv("APP_HOME", Path(__file__).parent.parent))

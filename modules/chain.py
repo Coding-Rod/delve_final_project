@@ -11,10 +11,10 @@ from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_core.tracers.stdout import ConsoleCallbackHandler
 from langchain_core.vectorstores import VectorStoreRetriever
 
-from ragbase.config import Config
-from ragbase.session_history import get_session_history
+from modules.config import Config
+from modules.session_history import get_session_history
 
-SYSTEM_PROMPT = """
+PROMPT = """
 Utilize the provided contextual information to respond to the user question.
 If the answer is not found within the context, state that the answer cannot be found.
 Prioritize concise responses (maximum of 3 sentences) and use a list where applicable.
@@ -45,7 +45,7 @@ def format_documents(documents: List[Document]) -> str:
 def create_chain(llm: BaseLanguageModel, retriever: VectorStoreRetriever) -> Runnable:
     prompt = ChatPromptTemplate.from_messages(
         [
-            ("system", SYSTEM_PROMPT),
+            ("system", PROMPT),
             MessagesPlaceholder("chat_history"),
             ("human", "{question}"),
         ]

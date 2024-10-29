@@ -1,6 +1,6 @@
 # Delve Final project
 
-Authors:
+## Authors
 
 - Alejandro Núñez Arroyo
 - Hamed Quenta Alvarez
