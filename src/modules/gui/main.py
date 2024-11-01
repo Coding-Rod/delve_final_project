@@ -10,7 +10,7 @@ class GUI(Controller):
         
         # Display the header and subheader
         with holder.container():
-            st.header("Document reader")
+            st.header("SmartDoc")
             st.subheader("Upload your PDF documents to get started")
             uploaded_files = st.file_uploader(
                 label="Upload PDF files", type=["pdf"], accept_multiple_files=True

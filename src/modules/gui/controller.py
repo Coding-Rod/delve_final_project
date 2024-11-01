@@ -13,7 +13,7 @@ class Controller:
         self.ask_question = ask_question
         self.create_chain = create_chain
 
-        st.set_page_config(page_title="Document reader", page_icon="📚")
+        st.set_page_config(page_title="SmartDoc", page_icon="📚")
 
         if "messages" not in st.session_state:
             st.session_state.messages = [

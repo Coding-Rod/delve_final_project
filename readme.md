@@ -1,4 +1,4 @@
-# Document Reader
+# SmartDoc
 
 > RAG base chatbot with LLM and Qdrant
 
